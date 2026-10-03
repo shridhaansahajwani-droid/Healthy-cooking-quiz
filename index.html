@@ -7,222 +7,202 @@
 
 <style>
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
 body {
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient(circle at top left, #263238 0%, #111827 35%, #070b12 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+min-height: 100vh;
+font-family: Arial, Helvetica, sans-serif;
+background:
+radial-gradient(circle at top, rgba(22,100,163,0.45), transparent 40%),
+linear-gradient(135deg, #07111f, #101827, #07111f);
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
 }
 
 .container {
-    width: 100%;
-    max-width: 700px;
+width: 100%;
+max-width: 850px;
 }
 
 .screen {
-    display: none;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+display: none;
+text-align: center;
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.15);
+border-radius: 25px;
+padding: 45px 30px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+backdrop-filter: blur(15px);
 }
 
 .screen.active {
-    display: block;
-}
-
-.home {
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.emoji {
-    font-size: 65px;
-    margin-bottom: 15px;
+display: block;
 }
 
 h1 {
-    font-size: 42px;
-    margin-bottom: 12px;
+font-size: clamp(38px, 8vw, 70px);
+margin-bottom: 15px;
+}
+
+h2 {
+font-size: 32px;
+margin-bottom: 25px;
 }
 
 .subtitle {
-    color: #cbd5e1;
-    line-height: 1.6;
-    margin-bottom: 30px;
+color: #cbd5e1;
+font-size: 18px;
+line-height: 1.6;
+margin-bottom: 35px;
 }
 
 button {
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 15px;
-    transition: 0.2s;
+border: none;
+cursor: pointer;
+font-family: inherit;
 }
 
-.start-btn {
-    width: 100%;
-    padding: 16px 35px;
-    background: white;
-    color: #111827;
-    font-size: 18px;
+.start-btn,
+.restart-btn {
+background: linear-gradient(135deg, #ff7a18, #ffb347);
+color: white;
+padding: 17px 35px;
+border-radius: 50px;
+font-size: 18px;
+font-weight: bold;
+transition: 0.2s;
 }
 
-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.92;
+.start-btn:hover,
+.restart-btn:hover {
+transform: scale(1.05);
 }
 
-.progress {
-    color: #94a3b8;
-    margin-bottom: 12px;
-    font-size: 14px;
+.progress-container {
+margin-bottom: 30px;
+}
+
+.progress-text {
+color: #cbd5e1;
+margin-bottom: 10px;
 }
 
 .progress-bar {
-    height: 8px;
-    background: rgba(255,255,255,0.12);
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 30px;
+width: 100%;
+height: 9px;
+background: rgba(255,255,255,0.12);
+border-radius: 20px;
+overflow: hidden;
 }
 
 .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: #facc15;
-    transition: width 0.3s ease;
+height: 100%;
+width: 10%;
+background: linear-gradient(90deg, #ff7a18, #ffb347);
+transition: width 0.3s ease;
 }
 
 .question {
-    font-size: 27px;
-    line-height: 1.3;
-    margin-bottom: 25px;
+font-size: clamp(25px, 5vw, 38px);
+line-height: 1.3;
+margin-bottom: 30px;
 }
 
 .answers {
-    display: grid;
-    gap: 13px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
 }
 
-.answer {
-    width: 100%;
-    text-align: left;
-    padding: 18px;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.14);
+.answer-btn {
+background: rgba(255,255,255,0.09);
+color: white;
+border: 1px solid rgba(255,255,255,0.15);
+border-radius: 18px;
+padding: 20px;
+font-size: 17px;
+text-align: left;
+transition: 0.2s;
 }
 
-.answer:hover {
-    background: rgba(255,255,255,0.16);
+.answer-btn:hover {
+background: rgba(255,122,24,0.25);
+border-color: #ff9b42;
+transform: translateY(-3px);
 }
 
-.result-profile {
-    background: rgba(255,255,255,0.07);
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 25px;
+.profile {
+font-size: 27px;
+font-weight: bold;
+margin-bottom: 35px;
 }
 
-.profile-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.profile-text {
-    color: #cbd5e1;
-    line-height: 1.5;
-}
-
-.section-title {
-    margin: 25px 0 12px;
-    color: #e2e8f0;
+.top-three {
+display: grid;
+gap: 15px;
+margin-bottom: 35px;
 }
 
 .recipe-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 12px;
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.13);
+border-radius: 18px;
+padding: 20px;
+text-align: left;
 }
 
 .recipe-card.top {
-    border-color: rgba(250,204,21,0.45);
+border-color: rgba(255,179,71,0.7);
+background: rgba(255,122,24,0.12);
 }
 
-.recipe-rank {
-    font-size: 14px;
-    color: #94a3b8;
-    margin-bottom: 5px;
+.rank {
+color: #ffb347;
+font-size: 15px;
+font-weight: bold;
+margin-bottom: 6px;
 }
 
 .recipe-name {
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 6px;
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 7px;
 }
 
-.recipe-description {
-    color: #cbd5e1;
-    line-height: 1.45;
-    font-size: 14px;
+.recipe-info {
+color: #cbd5e1;
+font-size: 14px;
+line-height: 1.5;
 }
 
-.recipe-details {
-    color: #94a3b8;
-    font-size: 13px;
-    margin-top: 8px;
+.section-title {
+text-align: left;
+margin-bottom: 15px;
+font-size: 23px;
 }
 
-.badge {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    background: rgba(255,255,255,0.1);
-    color: #e2e8f0;
+@media (max-width: 600px) {
+body {
+padding: 10px;
 }
 
-.restart-btn {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: white;
-    color: #111827;
+.screen {
+padding: 30px 18px;
 }
 
-@media (max-width: 500px) {
-    body {
-        padding: 12px;
-    }
+.answers {
+grid-template-columns: 1fr;
+}
 
-    .screen {
-        padding: 22px;
-    }
-
-    h1 {
-        font-size: 34px;
-    }
-
-    .question {
-        font-size: 23px;
-    }
+.answer-btn {
+padding: 17px;
+}
 }
 </style>
 </head>
@@ -231,61 +211,69 @@ button:hover {
 
 <div class="container">
 
-    <div id="homeScreen" class="screen active home">
-        <div class="emoji">🍳</div>
+<!-- HOME -->
+<section id="homeScreen" class="screen active">
+<h1>🍳</h1>
 
-        <h1>What's Cooking Today?</h1>
+<h1>What's Cooking Today?</h1>
 
-        <p class="subtitle">
-            Answer 10 questions about your cooking mood and discover
-            which of the 8 healthy recipes matches you best.
-        </p>
+<p class="subtitle">
+Answer 10 completely random questions about your food personality
+and we'll figure out which recipes belong on your plate.
+</p>
 
-        <button class="start-btn" onclick="startQuiz()">
-            START THE QUIZ
-        </button>
-    </div>
-
-
-    <div id="quizScreen" class="screen">
-
-        <div class="progress" id="progress">
-            Question 1 of 10
-        </div>
-
-        <div class="progress-bar">
-            <div id="progressFill" class="progress-fill"></div>
-        </div>
-
-        <div class="question" id="question">
-            Question goes here
-        </div>
-
-        <div class="answers" id="answers"></div>
-
-    </div>
+<button class="start-btn" onclick="startQuiz()">
+START THE QUIZ
+</button>
+</section>
 
 
-    <div id="resultsScreen" class="screen">
+<!-- QUIZ -->
+<section id="quizScreen" class="screen">
 
-        <h1>Your Cooking Profile 🍽️</h1>
+<div class="progress-container">
+<div class="progress-text" id="progressText">
+Question 1 of 10
+</div>
 
-        <div class="result-profile">
-            <div class="profile-name" id="profileName"></div>
-            <div class="profile-text" id="profileText"></div>
-        </div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+</div>
 
-        <h2 class="section-title">🔥 COOK NOW</h2>
-        <div id="topRecipes"></div>
+<div class="question" id="questionText"></div>
 
-        <h2 class="section-title">🍴 YOUR FULL RANKING</h2>
-        <div id="allRecipes"></div>
+<div class="answers" id="answersContainer"></div>
 
-        <button class="restart-btn" onclick="restartQuiz()">
-            TAKE THE QUIZ AGAIN
-        </button>
+</section>
 
-    </div>
+
+<!-- RESULTS -->
+<section id="resultsScreen" class="screen">
+
+<h2>Your Cooking Profile</h2>
+
+<div class="profile" id="profileText"></div>
+
+<div class="section-title">
+🔥 COOK NOW
+</div>
+
+<div class="top-three" id="topThree"></div>
+
+<div class="section-title">
+📋 YOUR FULL RECIPE RANKING
+</div>
+
+<div id="fullRanking"></div>
+
+<br>
+
+<button class="restart-btn" onclick="restartQuiz()">
+PLAY AGAIN
+</button>
+
+</section>
 
 </div>
 
@@ -293,365 +281,237 @@ button:hover {
 <script>
 
 /* =========================================================
-   THE 8 RECIPES
+RECIPES
 ========================================================= */
 
 const recipes = [
 
-    {
-        name: "Sautéed Paneer Mushroom Fusion",
-        category: "starter",
-        time: 20,
-        flavour: "spicy",
-        texture: "crunchy",
-        effort: "medium",
-        method: "stir",
-        priority: "taste",
-        adventure: "different",
-        intensity: "strong",
-        healthy: "high",
-        description: "A bold paneer and mushroom stir-fry with a spicy, crunchy personality."
-    },
+{
+name: "Sautéed Paneer Mushroom Fusion",
+category: "starter",
+time: 20,
+flavour: "spicy",
+texture: "crunchy",
+effort: "medium",
+method: "stir",
+priority: "taste",
+adventure: "different",
+intensity: "strong",
+description: "A crunchy, spicy paneer and mushroom stir-fry."
+},
 
-    {
-        name: "Avocado Toast",
-        category: "starter",
-        time: 10,
-        flavour: "fresh",
-        texture: "mixture",
-        effort: "easy",
-        method: "fresh",
-        priority: "healthy",
-        adventure: "slightly-different",
-        intensity: "medium",
-        healthy: "high",
-        description: "Creamy avocado with crispy toast — quick, fresh and satisfying."
-    },
+{
+name: "Recipe 2 — Avacado toast",
+category: "starter",
+time: 15,
+flavour: "spicy",
+texture: "crunchy",
+effort: "easy",
+method: "toast",
+priority: "medium",
+adventure: "familiar",
+intensity: "medium",
+description: "Your second starter."
+},
 
-    {
-        name: "Tofu Veggie Salad",
-        category: "salad",
-        time: 15,
-        flavour: "fresh",
-        texture: "crunchy",
-        effort: "easy",
-        method: "fresh",
-        priority: "healthy",
-        adventure: "different",
-        intensity: "medium",
-        healthy: "high",
-        description: "A colourful combination of tofu and vegetables with a fresh, crunchy feel."
-    },
+{
+name: "Recipe 3 — kodhri mix",
+category: "main",
+time: 30,
+flavour: "balanced",
+texture: "soft",
+effort: "medium",
+method: "pan",
+priority: "taste",
+adventure: "different",
+intensity: "strong",
+description: "Your first main course."
+},
 
-    {
-        name: "Caesar Salad",
-        category: "salad",
-        time: 15,
-        flavour: "savoury",
-        texture: "crunchy",
-        effort: "easy",
-        method: "fresh",
-        priority: "taste",
-        adventure: "familiar",
-        intensity: "medium",
-        healthy: "medium",
-        description: "A classic crunchy salad with a creamy and savoury personality."
-    },
+{
+name: "Recipe 4 — Soya rice",
+category: "main",
+time: 35,
+flavour: "balanced",
+texture: "soft",
+effort: "hard",
+method: "slow",
+priority: "healthy",
+adventure: "different",
+intensity: "medium",
+description: "Your second main course."
+},
 
-    {
-        name: "Aata Cake",
-        category: "dessert",
-        time: 40,
-        flavour: "sweet",
-        texture: "soft",
-        effort: "challenge",
-        method: "slow",
-        priority: "taste",
-        adventure: "different",
-        intensity: "medium",
-        healthy: "medium",
-        description: "A homemade whole-wheat cake bringing a healthier twist to dessert."
-    },
+{
+name: "Recipe 5 — Cesar salad",
+category: "salad",
+time: 10,
+flavour: "tangy",
+texture: "fresh",
+effort: "easy",
+method: "fresh",
+priority: "healthy",
+adventure: "familiar",
+intensity: "mild",
+description: "Your first salad."
+},
 
-    {
-        name: "Fruit Smoothie Bowl",
-        category: "dessert",
-        time: 10,
-        flavour: "sweet",
-        texture: "creamy",
-        effort: "easy",
-        method: "fresh",
-        priority: "healthy",
-        adventure: "slightly-different",
-        intensity: "mild",
-        healthy: "high",
-        description: "A colourful fruity bowl with a cool and creamy texture."
-    },
+{
+name: "Recipe 6 — Veggie salad",
+category: "salad",
+time: 15,
+flavour: "fresh",
+texture: "fresh",
+effort: "easy",
+method: "fresh",
+priority: "healthy",
+adventure: "different",
+intensity: "mild",
+description: "Your second salad."
+},
 
-    {
-        name: "Soya Rice",
-        category: "main",
-        time: 25,
-        flavour: "savoury",
-        texture: "mixture",
-        effort: "medium",
-        method: "stir",
-        priority: "healthy",
-        adventure: "slightly-different",
-        intensity: "medium",
-        healthy: "high",
-        description: "A filling rice-based meal combined with protein-rich soya."
-    },
+{
+name: "Recipe 7 — Blueberry smoothie",
+category: "dessert",
+time: 15,
+flavour: "sweet",
+texture: "soft",
+effort: "easy",
+method: "fresh",
+priority: "taste",
+adventure: "familiar",
+intensity: "medium",
+description: "Your first dessert."
+},
 
-    {
-        name: "Kodhri Mix",
-        category: "main",
-        time: 30,
-        flavour: "savoury",
-        texture: "mixture",
-        effort: "medium",
-        method: "slow",
-        priority: "healthy",
-        adventure: "different",
-        intensity: "medium",
-        healthy: "high",
-        description: "A wholesome mixed-grain style dish with a hearty and nutritious feel."
-    }
+{
+name: "Recipe 8 — Aata cake",
+category: "dessert",
+time: 30,
+flavour: "sweet",
+texture: "creamy",
+effort: "medium",
+method: "slow",
+priority: "taste",
+adventure: "different",
+intensity: "strong",
+description: "Your second dessert."
+},
 
 ];
 
 
 /* =========================================================
-   QUIZ QUESTIONS
+QUESTIONS
 ========================================================= */
 
 const questions = [
 
-    {
-        question: "How much time would you actually spend cooking?",
-        answers: [
-            {
-                text: "⚡ 5–10 minutes",
-                effects: { time: "fast" }
-            },
-            {
-                text: "🙂 10–20 minutes",
-                effects: { time: "medium" }
-            },
-            {
-                text: "🍳 20–30 minutes",
-                effects: { time: "long" }
-            },
-            {
-                text: "👨‍🍳 30+ minutes — I'm committed",
-                effects: { time: "very-long" }
-            }
-        ]
-    },
+{
+text: "How much time are you willing to spend making your food?",
+answers: [
+{ text: "A — ⚡ 5–10 minutes", effects: { time: 10 } },
+{ text: "B — 🕐 10–20 minutes", effects: { time: 20 } },
+{ text: "C — ⏳ 20–30 minutes", effects: { time: 30 } },
+{ text: "D — 👨‍🍳 30+ minutes", effects: { time: 40 } }
+]
+},
 
-    {
-        question: "What are you craving right now?",
-        answers: [
-            {
-                text: "🌶️ Something spicy and bold",
-                effects: { flavour: "spicy" }
-            },
-            {
-                text: "🍓 Something sweet",
-                effects: { flavour: "sweet" }
-            },
-            {
-                text: "🥗 Something fresh and light",
-                effects: { flavour: "fresh" }
-            },
-            {
-                text: "🧂 Something savoury",
-                effects: { flavour: "savoury" }
-            }
-        ]
-    },
+{
+text: "What are you craving right now?",
+answers: [
+{ text: "A — 🌶️ Spicy / bold", effects: { flavour: "spicy" } },
+{ text: "B — 🍰 Sweet", effects: { flavour: "sweet" } },
+{ text: "C — 🍋 Sour / tangy", effects: { flavour: "tangy" } },
+{ text: "D — 🥗 Fresh / light", effects: { flavour: "fresh" } }
+]
+},
 
-    {
-        question: "Pick your food category.",
-        answers: [
-            {
-                text: "🥙 Starter",
-                effects: { category: "starter" }
-            },
-            {
-                text: "🍚 Main course",
-                effects: { category: "main" }
-            },
-            {
-                text: "🥗 Salad",
-                effects: { category: "salad" }
-            },
-            {
-                text: "🍰 Dessert",
-                effects: { category: "dessert" }
-            }
-        ]
-    },
+{
+text: "What kind of food are you looking for?",
+answers: [
+{ text: "A — 🍽️ Starter / small bite", effects: { category: "starter" } },
+{ text: "B — 🍛 Proper main meal", effects: { category: "main" } },
+{ text: "C — 🥗 Fresh / light", effects: { category: "salad" } },
+{ text: "D — 🍰 Sweet / dessert", effects: { category: "dessert" } }
+]
+},
 
-    {
-        question: "What texture sounds best?",
-        answers: [
-            {
-                text: "🥨 Crunchy",
-                effects: { texture: "crunchy" }
-            },
-            {
-                text: "🍰 Soft",
-                effects: { texture: "soft" }
-            },
-            {
-                text: "🥑 Creamy",
-                effects: { texture: "creamy" }
-            },
-            {
-                text: "🥣 A mixture of textures",
-                effects: { texture: "mixture" }
-            }
-        ]
-    },
+{
+text: "Pick the texture you'd enjoy most.",
+answers: [
+{ text: "A — 🥨 Crunchy", effects: { texture: "crunchy" } },
+{ text: "B — 🥣 Soft / creamy", effects: { texture: "soft" } },
+{ text: "C — 🍉 Fresh / juicy", effects: { texture: "fresh" } },
+{ text: "D — 🤯 A mixture of textures", effects: { texture: "mixed" } }
+]
+},
 
-    {
-        question: "How much effort are you willing to put in?",
-        answers: [
-            {
-                text: "😴 Almost no effort",
-                effects: { effort: "easy" }
-            },
-            {
-                text: "🙂 A little cooking",
-                effects: { effort: "easy" }
-            },
-            {
-                text: "🍳 I'll cook properly",
-                effects: { effort: "medium" }
-            },
-            {
-                text: "👨‍🍳 Give me a challenge",
-                effects: { effort: "challenge" }
-            }
-        ]
-    },
+{
+text: "How much cooking effort are you willing to put in?",
+answers: [
+{ text: "A — 😴 Almost no effort", effects: { effort: "easy" } },
+{ text: "B — 🙂 A little cooking", effects: { effort: "medium" } },
+{ text: "C — 👨‍🍳 Happy to cook properly", effects: { effort: "hard" } },
+{ text: "D — 🔥 Give me a challenge", effects: { effort: "hard" } }
+]
+},
 
-    {
-        question: "What matters most to you today?",
-        answers: [
-            {
-                text: "💪 I want something healthy",
-                effects: { priority: "healthy" }
-            },
-            {
-                text: "😋 I mainly care about taste",
-                effects: { priority: "taste" }
-            },
-            {
-                text: "⚖️ I want a balance of both",
-                effects: { priority: "balanced" }
-            },
-            {
-                text: "✨ I want something interesting",
-                effects: { adventure: "different" }
-            }
-        ]
-    },
+{
+text: "Which cooking style sounds best right now?",
+answers: [
+{ text: "A — 🍳 Stir-fried / pan-cooked", effects: { method: "stir" } },
+{ text: "B — 🔥 Grilled / roasted", effects: { method: "grill" } },
+{ text: "C — 🥗 Fresh / no-cook", effects: { method: "fresh" } },
+{ text: "D — 🫕 Cooked slowly / more involved", effects: { method: "slow" } }
+]
+},
 
-    {
-        question: "How adventurous do you feel with your food?",
-        answers: [
-            {
-                text: "🧸 Keep it familiar",
-                effects: { adventure: "familiar" }
-            },
-            {
-                text: "🙂 A little different is good",
-                effects: { adventure: "slightly-different" }
-            },
-            {
-                text: "🔥 Give me something different",
-                effects: { adventure: "different" }
-            },
-            {
-                text: "🚀 Surprise me completely",
-                effects: { adventure: "different" }
-            }
-        ]
-    },
+{
+text: "What's the most important thing about your food today?",
+answers: [
+{ text: "A — ⚡ Quick", effects: { priority: "quick" } },
+{ text: "B — 😋 Taste", effects: { priority: "taste" } },
+{ text: "C — 🥗 Healthy / fresh", effects: { priority: "healthy" } },
+{ text: "D — 🧪 Interesting", effects: { priority: "interesting" } }
+]
+},
 
-    {
-        question: "How strong do you want the flavour to be?",
-        answers: [
-            {
-                text: "🌿 Mild",
-                effects: { intensity: "mild" }
-            },
-            {
-                text: "🙂 Medium",
-                effects: { intensity: "medium" }
-            },
-            {
-                text: "🔥 Strong",
-                effects: { intensity: "strong" }
-            },
-            {
-                text: "💥 Very bold",
-                effects: { intensity: "strong" }
-            }
-        ]
-    },
+{
+text: "How adventurous are you feeling?",
+answers: [
+{ text: "A — 👍 Keep it familiar", effects: { adventure: "familiar" } },
+{ text: "B — 🙂 Slightly different", effects: { adventure: "different" } },
+{ text: "C — 😈 Surprise me", effects: { adventure: "surprising" } },
+{ text: "D — 🤯 Completely different", effects: { adventure: "extreme" } }
+]
+},
 
-    {
-        question: "What kind of meal sounds best right now?",
-        answers: [
-            {
-                text: "🥑 Something light",
-                effects: { light: true }
-            },
-            {
-                text: "🍽️ Something filling",
-                effects: { filling: true }
-            },
-            {
-                text: "🍓 Something refreshing",
-                effects: { refreshing: true }
-            },
-            {
-                text: "🍰 Something comforting",
-                effects: { comforting: true }
-            }
-        ]
-    },
+{
+text: "What kind of flavour intensity do you want?",
+answers: [
+{ text: "A — 🌶️ Strong / punchy", effects: { intensity: "strong" } },
+{ text: "B — 😌 Medium and balanced", effects: { intensity: "medium" } },
+{ text: "C — 🌿 Mild / subtle", effects: { intensity: "mild" } },
+{ text: "D — 🍋 Fresh / refreshing", effects: { intensity: "fresh" } }
+]
+},
 
-    {
-        question: "Which cooking style sounds most appealing?",
-        answers: [
-            {
-                text: "🥗 Fresh and simple",
-                effects: { method: "fresh" }
-            },
-            {
-                text: "🍳 Stir-fried and cooked in a pan",
-                effects: { method: "stir" }
-            },
-            {
-                text: "👨‍🍳 Slow and carefully prepared",
-                effects: { method: "slow" }
-            },
-            {
-                text: "✨ I don't mind — surprise me",
-                effects: { method: "any" }
-            }
-        ]
-    }
+{
+text: "What time do you eat dinner?",
+answers: [
+{ text: "A — ⚡6 - 7 PM", effects: { style: "aggressive" } },
+{ text: "B — 😎 7 - 8 PM", effects: { style: "balanced" } },
+{ text: "C — 🧠 8 - 9 PM", effects: { style: "strategic" } },
+{ text: "D — 💥 9 - 10 PM", effects: { style: "power" } }
+]
+}
 
 ];
 
 
 /* =========================================================
-   QUIZ STATE
+QUIZ VARIABLES
 ========================================================= */
 
 let currentQuestion = 0;
@@ -659,202 +519,298 @@ let userAnswers = [];
 
 
 /* =========================================================
-   START QUIZ
+START QUIZ
 ========================================================= */
 
 function startQuiz() {
-alert("start Works");
-    currentQuestion = 0;
-    userAnswers = [];
 
-    document.getElementById("homeScreen").classList.remove("active");
-    document.getElementById("resultsScreen").classList.remove("active");
-    document.getElementById("quizScreen").classList.add("active");
+currentQuestion = 0;
+userAnswers = [];
 
-    showQuestion();
+document.getElementById("homeScreen").classList.remove("active");
+document.getElementById("resultsScreen").classList.remove("active");
+document.getElementById("quizScreen").classList.add("active");
+
+showQuestion();
+
 }
 
 
 /* =========================================================
-   SHOW QUESTION
+SHOW QUESTION
 ========================================================= */
 
 function showQuestion() {
 
-    const question = questions[currentQuestion];
+const question = questions[currentQuestion];
 
-    document.getElementById("progress").textContent =
-        "Question " + (currentQuestion + 1) + " of " + questions.length;
+document.getElementById("questionText").textContent = question.text;
 
-    document.getElementById("progressFill").style.width =
-        ((currentQuestion + 1) / questions.length * 100) + "%";
+document.getElementById("progressText").textContent =
+"Question " + (currentQuestion + 1) + " of " + questions.length;
 
-    document.getElementById("question").textContent =
-        question.question;
+document.getElementById("progressFill").style.width =
+((currentQuestion + 1) / questions.length * 100) + "%";
 
-    const answersContainer =
-        document.getElementById("answers");
+const container = document.getElementById("answersContainer");
 
-    answersContainer.innerHTML = "";
+container.innerHTML = "";
 
-    question.answers.forEach(function(answer) {
+question.answers.forEach((answer, index) => {
 
-        const button = document.createElement("button");
+const button = document.createElement("button");
 
-        button.className = "answer";
-        button.textContent = answer.text;
+button.className = "answer-btn";
+button.textContent = answer.text;
 
-        button.onclick = function() {
-            selectAnswer(answer);
-        };
+button.onclick = function() {
+selectAnswer(index);
+};
 
-        answersContainer.appendChild(button);
+container.appendChild(button);
 
-    });
+});
+
 }
 
 
 /* =========================================================
-   SELECT ANSWER
+SELECT ANSWER
 ========================================================= */
 
-function selectAnswer(answer) {
+function selectAnswer(answerIndex) {
 
-    userAnswers.push(answer);
+const answer = questions[currentQuestion].answers[answerIndex];
 
-    currentQuestion++;
+userAnswers.push(answer.effects);
 
-    if (currentQuestion < questions.length) {
-        showQuestion();
-    } else {
-        calculateResults();
-    }
+currentQuestion++;
+
+if (currentQuestion < questions.length) {
+
+showQuestion();
+
+} else {
+
+showResults();
+
+}
+
 }
 
 
 /* =========================================================
-   CALCULATE RESULTS
+SCORE RECIPES
 ========================================================= */
-function calculateResults() {
 
-    const rankedRecipes = recipes.map(function(recipe) {
+function calculateScores() {
 
-        let score = 0;
-        let reasons = [];
+return recipes.map(recipe => {
 
-        userAnswers.forEach(function(answer) {
+let score = 0;
 
-            const effects = answer.effects;
+userAnswers.forEach(answer => {
 
-            if (effects.time) {
+/* Time */
+if (answer.time) {
 
-                if (effects.time === "fast" && recipe.time <= 10) {
-                    score += 6;
-                    reasons.push("quick");
-                }
+const difference = Math.abs(recipe.time - answer.time);
 
-                if (effects.time === "medium" && recipe.time > 10 && recipe.time <= 20) {
-                    score += 6;
-                    reasons.push("fits your time");
-                }
-
-                if (effects.time === "long" && recipe.time > 20 && recipe.time <= 30) {
-                    score += 6;
-                    reasons.push("fits your time");
-                }
-
-                if (effects.time === "very-long" && recipe.time > 30) {
-                    score += 6;
-                    reasons.push("worth the extra time");
-                }
-            }
-
-            if (effects.flavour && recipe.flavour === effects.flavour) {
-                score += 7;
-                reasons.push(effects.flavour + " flavour");
-            }
-
-            if (effects.category && recipe.category === effects.category) {
-                score += 7;
-                reasons.push(effects.category);
-            }
-
-            if (effects.texture && recipe.texture === effects.texture) {
-                score += 6;
-                reasons.push(effects.texture + " texture");
-            }
-
-            if (effects.effort && recipe.effort === effects.effort) {
-                score += 5;
-                reasons.push("right effort");
-            }
-
-            if (effects.priority === "healthy" && recipe.healthy === "high") {
-                score += 6;
-                reasons.push("healthy");
-            }
-
-            if (effects.priority === "taste" && recipe.priority === "taste") {
-                score += 5;
-                reasons.push("taste-focused");
-            }
-
-            if (effects.priority === "balanced" && recipe.healthy === "high") {
-                score += 3;
-            }
-
-            if (effects.adventure && recipe.adventure === effects.adventure) {
-                score += 4;
-                reasons.push("matches your adventure level");
-            }
-
-            if (effects.intensity && recipe.intensity === effects.intensity) {
-                score += 4;
-                reasons.push("matches your flavour intensity");
-            }
-
-            if (effects.method === "any") {
-                score += 1;
-            }
-
-            if (effects.method && effects.method !== "any" && recipe.method === effects.method) {
-                score += 5;
-                reasons.push("matches your cooking style");
-            }
-
-            if (effects.light && recipe.category === "salad") {
-                score += 5;
-                reasons.push("light");
-            }
-
-            if (effects.refreshing && recipe.flavour === "fresh") {
-                score += 5;
-                reasons.push("refreshing");
-            }
-
-            if (effects.comforting && recipe.category === "dessert") {
-                score += 4;
-                reasons.push("comforting");
-            }
-
-            if (effects.filling && recipe.category === "main") {
-                score += 5;
-                reasons.push("filling");
-            }
-
-        });
-
-        return {
-            ...recipe,
-            score: score,
-            reasons: [...new Set(reasons)]
-        };
-
-    });
-
-    rankedRecipes.sort(function(a, b) {
-        return b.score - a.score;
-    });
-
-    displayResults(rankedRecipes);
+if (difference <= 5) {
+score += 12;
+} else if (difference <= 10) {
+score += 7;
+} else if (difference <= 20) {
+score += 3;
 }
+
+}
+
+/* Category */
+if (answer.category && recipe.category === answer.category) {
+score += 18;
+}
+
+/* Flavour */
+if (answer.flavour && recipe.flavour === answer.flavour) {
+score += 14;
+}
+
+/* Texture */
+if (answer.texture && recipe.texture === answer.texture) {
+score += 10;
+}
+
+/* Effort */
+if (answer.effort && recipe.effort === answer.effort) {
+score += 9;
+}
+
+/* Cooking method */
+if (answer.method && recipe.method === answer.method) {
+score += 9;
+}
+
+/* Priority */
+if (answer.priority && recipe.priority === answer.priority) {
+score += 9;
+}
+
+/* Adventure */
+if (answer.adventure && recipe.adventure === answer.adventure) {
+score += 7;
+}
+
+/* Intensity */
+if (answer.intensity && recipe.intensity === answer.intensity) {
+score += 8;
+}
+
+});
+
+return {
+...recipe,
+score: score
+};
+
+});
+
+}
+
+
+/* =========================================================
+PROFILE
+========================================================= */
+
+function getProfile() {
+
+let aggressive = false;
+let adventurous = false;
+let healthy = false;
+let quick = false;
+
+userAnswers.forEach(answer => {
+
+if (answer.style === "aggressive" || answer.style === "power") {
+aggressive = true;
+}
+
+if (
+answer.adventure === "surprising" ||
+answer.adventure === "extreme"
+) {
+adventurous = true;
+}
+
+if (answer.priority === "healthy") {
+healthy = true;
+}
+
+if (answer.priority === "quick") {
+quick = true;
+}
+
+});
+
+if (aggressive && quick) {
+return "⚡ The Aggressive Opener";
+}
+
+if (adventurous) {
+return "🧪 The Experimental All-Rounder";
+}
+
+if (healthy) {
+return "🥗 The Smart Strategist";
+}
+
+return "🎯 The Balanced Player";
+
+}
+
+
+/* =========================================================
+SHOW RESULTS
+========================================================= */
+
+function showResults() {
+
+document.getElementById("quizScreen").classList.remove("active");
+document.getElementById("resultsScreen").classList.add("active");
+
+const scoredRecipes = calculateScores();
+
+scoredRecipes.sort((a, b) => b.score - a.score);
+
+document.getElementById("profileText").textContent = getProfile();
+
+const topThree = document.getElementById("topThree");
+
+topThree.innerHTML = "";
+
+scoredRecipes.slice(0, 3).forEach((recipe, index) => {
+
+const card = document.createElement("div");
+
+card.className = "recipe-card top";
+
+card.innerHTML = `
+<div class="rank">#${index + 1} — COOK NOW</div>
+<div class="recipe-name">${recipe.name}</div>
+<div class="recipe-info">
+${recipe.description}<br>
+⏱️ ${recipe.time} minutes
+</div>
+`;
+
+topThree.appendChild(card);
+
+});
+
+
+const ranking = document.getElementById("fullRanking");
+
+ranking.innerHTML = "";
+
+scoredRecipes.forEach((recipe, index) => {
+
+const card = document.createElement("div");
+
+card.className = "recipe-card";
+
+const status = index < 3 ? "🔥 COOK NOW" : "🕐 TRY LATER";
+
+card.innerHTML = `
+<div class="rank">#${index + 1} — ${status}</div>
+<div class="recipe-name">${recipe.name}</div>
+<div class="recipe-info">
+${recipe.description}<br>
+⏱️ ${recipe.time} minutes
+</div>
+`;
+
+ranking.appendChild(card);
+
+});
+
+}
+
+
+/* =========================================================
+RESTART
+========================================================= */
+
+function restartQuiz() {
+
+document.getElementById("resultsScreen").classList.remove("active");
+document.getElementById("homeScreen").classList.add("active");
+
+currentQuestion = 0;
+userAnswers = [];
+
+}
+
+</script>
+
+</body>
+</html>
